@@ -1,20 +1,29 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import Home from './screens/Home';
+import Menu from './screens/Menu';
 
+export type RootNavigation={
+  Home:any
+  Details:any
+  Menu:any
+  Maps:any
+}
+const Stack=createNativeStackNavigator<RootNavigation>()
 export default function App() {
+  
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+<NavigationContainer>
+  <Stack.Navigator>
+<Stack.Screen options={{headerShown:false}} component={Home} name='Home'/>    
+<Stack.Screen options={{headerShown:false}} component={Menu} name='Menu'/>
+  </Stack.Navigator>
+
+</NavigationContainer>
+
+
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+//http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=2966d9775a530f709ca1ab1b5010d00d
